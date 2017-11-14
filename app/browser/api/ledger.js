@@ -2095,6 +2095,8 @@ const getNewClient = () => {
   return newClient
 }
 
+let busyRetryCount = 0
+
 const transitionWalletToBat = () => {
   let newPaymentId, result
 
@@ -2165,7 +2167,13 @@ const transitionWalletToBat = () => {
   }
 
   if (client.busyP()) {
-    console.log('ledger client is currently busy; transition will be retried on next launch')
+    if (++busyRetryCount > 3) {
+      console.log('ledger client is currently busy; transition will be retried on next launch')
+      return
+    }
+    const delayTime = random.randomInt({ min: miliseconds.minute, max: 10 * miliseconds.minute })
+    console.log('ledger client is currently busy; transition will be retried shortly (this was attempt ' + busyRetryCount + ')')
+    setTimeout(() => transitionWalletToBat(), delayTime)
     return
   }
 
