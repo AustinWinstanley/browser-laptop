@@ -2379,7 +2379,8 @@ const getMethods = () => {
       },
       getCurrentMediaKey: (key) => currentMediaKey,
       synopsisNormalizer,
-      checkVerifiedStatus
+      checkVerifiedStatus,
+      roundtrip
     }
   }
 
