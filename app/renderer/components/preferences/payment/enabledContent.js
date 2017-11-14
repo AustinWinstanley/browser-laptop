@@ -238,6 +238,12 @@ class EnabledContent extends ImmutableComponent {
           data-l10n-args={walletStatusText.args ? JSON.stringify(walletStatusText.args) : null}
         />
       </div>
+      <div className={css(styles.link_wrapper)}>
+        <a data-l10n-id='termsOfService'
+          href=' https://basicattentiontoken.org/contributor-terms-of-service/'
+          target='_blank'
+          rel='noreferrer noopener' />
+      </div>
       <LedgerTable ledgerData={this.props.ledgerData}
         settings={this.props.settings}
         onChangeSetting={this.props.onChangeSetting}
@@ -397,6 +403,13 @@ const styles = StyleSheet.create({
 
   loader__line_off: {
     animationName: 'none'
+  },
+  link_wrapper: {
+    display: 'flex',
+    flex: 1,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-end',
+    height: '50px'
   }
 })
 
